@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="warning-box-wrapper"></div>
+            <div class="warning-box bg-cherry-red-fade rounded alert p-0" role="alert">
+                <div class="warning-box-header bg-cherry-red text-white text-center pt-2 pb-2 rounded-top">
+                    <h2><span class="fas fa-exclamation-circle"></span> Warning
+                        <button type="button" class="close p-2 pr-3 text-white" data-dismiss="alert"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                    </h2>
+                </div>
+                <div class="container warning-box-body">
+
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            </div>
+
+        {% endif %}
+    {% endwith %}
+<form method="post" enctype="multipart/form-data" action="{{ url_for('person.register_user') }}" class="bg-dark text-white p-3 rounded">
+    <div class = "form-group" >
+        <label for = "name" class= "font-weight-bold">Name</label>
+        <input type = "text" id = "name" name = "name" class = "form-control">
+    </div>
+    <div class = "form-group" >
+        <label for = "aadhaar" class= "font-weight-bold">Adhaar Number</label>
+        <input type = "text" id = "aadhaar" name = "aadhaar_no" class = "form-control">
+    </div>
+
+    <div class = "form-group">
+        <label for = "dob" class= "font-weight-bold">Date of Birth</label>
+        <input type = "date" id = "dob" name = "dob" class = "form-control">
+    </div>
+    <div class = "form-group">
+        <label for = "image" class= "font-weight-bold">Image</label>
+        <input type = "file" id = "image" name = "image" class = "form-control">
+    </div>
+    <div class = "form-group">
+        <label for = "phone" class= "font-weight-bold">Phone Number</label>
+        <input type = "tel" id = "phone" name = "phone" class = "form-control">
+    </div>
+    <div class = "form-group">
+        <label for = "gender" class= "font-weight-bold">Phone Number</label>
+        <select name ="gender" id = "gender" class="custom-select">
+            <option value = "Male">Male</option>
+            <option value = "Female">Female</option>
+            <option value = "Other">Other</option>
+        </select>
+    </div>
+    <div class = "form-group">
+        <label for = "address" class= "font-weight-bold">Address</label>
+        <input type = "text" id = "address" name = "address" class = "form-control">
+    </div>
+    <div class = "form-group">
+        <input type = "hidden" id = "fingerprint" value = "True" name = "fingerprint" class = "form-control">
+    </div>
+    <div class = "form-group">
+        <button class = "btn btn-success" type="submit">Submit</button>
+    </div>
+
+</form>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block body %}
+    {% if persons|length>0 %}
+        <table class="table-bordered">
+            <thead>
+            <tr class="d-table-row">
+                <th>
+                    Adhaar No
+                </th>
+                <th class="d-table-cell">
+                    Image
+                </th>
+                <th class="d-table-cell">
+                    Name
+                </th>
+
+                <th class="d-table-cell">
+                    Gender
+                </th>
+                <th class="d-table-cell">
+                    Address
+                </th>
+
+                <th class="d-table-cell">
+                    Date of Birth
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for person in persons %}
+                <tr class="d-table-row">
+                    <td>
+                        {{ person.aadhaar_no }}
+                    </td>
+
+                    <td class="d-table-cell">
+                        <img src="{{ url_for('static',filename = "assets/images/"+person.image ) }}">
+                    </td>
+
+                    <td class="d-table-cell">
+                        {{ person.name }}
+                    </td>
+
+
+                    <td class="d-table-cell">
+                        {{ person.gender }}
+                    </td>
+
+                    <td class="d-table-cell">
+                        {{ person.address }}
+                    </td>
+
+                    <td class="d-table-cell">
+                        {{ person.dob }}
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h2>Sorry there are No Records</h2>
+    {% endif %}
+{% endblock %}
