@@ -1,0 +1,1 @@
+web: wwsgi wwsgi.ini

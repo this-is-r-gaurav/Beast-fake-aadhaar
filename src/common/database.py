@@ -1,6 +1,7 @@
 import pymongo
+import os
 class Database:
-    _URI = 'mongodb://rg:1234@ds223009.mlab.com:23009/fake-aadhaar'
+    _URI = os.environ.get('DB_URI')
     _DATABASE = None
 
     @staticmethod
