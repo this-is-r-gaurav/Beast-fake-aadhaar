@@ -2,8 +2,9 @@ from flask import Flask,render_template
 
 from src.common.database import Database
 from src.models.person.person import Person
+import src.config as config
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object(config)
 app.secret_key = "123"
 
 from src.models.person.views import person_blueprint
