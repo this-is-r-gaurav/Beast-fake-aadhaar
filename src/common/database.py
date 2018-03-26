@@ -7,7 +7,7 @@ class Database:
     @staticmethod
     def initialize():
         client = pymongo.MongoClient(Database._URI)
-        Database._DATABASE = client['fake-aadhaar']
+        Database._DATABASE = client.get_default_database()
 
     @staticmethod
     def insert(collection, data):
