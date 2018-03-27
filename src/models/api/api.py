@@ -12,17 +12,20 @@ api = Api(api_blueprint,'1.0','Testing Beast Aadhaar Api', 'This is a Fake Aadha
 class ListAllUser(Resource):
     def get(self):
         cluster_data = APIMethods.get_cluster_user()
-        return jsonify({'data':cluster_data })
+        return jsonify({'data': cluster_data })
 
-@api.route('/<aadhaar_no>')
+@api.route('/adhaar')
 class GetUserInfo(Resource):
-    def get(self,aadhaar_no):
+    @TSP_namespace.doc(params={
+        'aadhaar_no': {'in': 'formData', 'description': 'User Aadhaar Number', 'required': 'True'}})
+    def get(self):
+        aadhaar_no=request.form['aadhaar_no']
         person = Person.get_by_aadhaar(aadhaar_no)
         return jsonify(
             {
             "aadhaar": person.aadhaar_no,
             "name": person.name,
-            "gender":person.gender,
+            "gender": person.gender,
             "address": person.address,
             "dob": person.dob,
             "phone": person.phone,
