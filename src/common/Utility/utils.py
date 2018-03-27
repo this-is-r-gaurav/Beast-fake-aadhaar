@@ -26,7 +26,7 @@ class Utils:
         :param phone:Client Phone Number
         :return:True if Phone number has right format otherwise False
         """
-        phone_validator = re.compile('^([7-9][\d]{9})$|^([7-9][\d]{4}\-[\d]{5})$')
+        phone_validator = re.compile('^(\+91[7-9][\d]{9})$|^([7-9][\d]{9})$|^([7-9][\d]{4}\-[\d]{5})$')
         return True if phone_validator.match(phone) else False
 
     @staticmethod
