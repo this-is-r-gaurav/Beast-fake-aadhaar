@@ -1,4 +1,4 @@
-from flask import render_template, request, flash, redirect
+from flask import render_template, request, flash, redirect, url_for
 from flask.blueprints import Blueprint
 from werkzeug.utils import secure_filename
 
@@ -38,7 +38,7 @@ def register_user():
         if image and Utils.allowed_file(image.filename):
             filename = secure_filename(image.filename)
             fileName = filename
-            image.save(os.path.join((os.path.abspath('.'))+'static/assets/images/',filename))
+            image.save(os.path.join((url_for('static')+'/assets/images/',filename))
 
         Person(
             aadhaar_no=aadhaar_no,
