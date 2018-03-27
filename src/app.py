@@ -10,7 +10,7 @@ from src.models.person.person import Person
 app = Flask(__name__)
 
 app.config.from_object(config)
-app.secret_key = os.environ.get()
+app.secret_key = os.environ.get('S_KEY')
 
 from src.models.person.views import person_blueprint
 app.register_blueprint(person_blueprint,url_prefix='/persons')
