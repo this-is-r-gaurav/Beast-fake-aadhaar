@@ -1,8 +1,8 @@
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, flash, redirect
 from flask.blueprints import Blueprint
 from werkzeug.utils import secure_filename
 
-from src.common.utils import Utils
+from src.common.Utility.utils import Utils
 from src.models.person.person import Person
 
 import os

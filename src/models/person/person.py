@@ -1,18 +1,20 @@
 import uuid
-from src.common.database import Database
-import src.models.person.constants as PersonConstants
 import datetime
 
+import src.models.person.constants as PersonConstants
+
+from src.common.database import Database
+from src.common.Utility.Utility import CommonUtility as PersonUtility
 
 class Person:
     def __init__(self, aadhaar_no, image, name, address, gender, dob, phone, fingerprint=None, _id=None):
         self._id = uuid.uuid4().hex if _id is None else _id
-        self.aadhaar_no = aadhaar_no
-        self.name = name
+        self.aadhaar_no = PersonUtility.formating_aadhaar(aadhaar_no)
+        self.name = PersonUtility.formating_name(name)
         self.address = address
         self.gender = gender
         self.dob = datetime.datetime.strptime(dob,"%Y-%m-%d") if dob is isinstance(dob, str) else dob
-        self.phone = phone
+        self.phone = PersonUtility.formating_phone(phone)
         self.fingerprint = fingerprint
         self.image = image
 
