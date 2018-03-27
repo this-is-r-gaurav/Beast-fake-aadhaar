@@ -18,7 +18,7 @@ class ListAllUser(Resource):
 class GetUserInfo(Resource):
     @api.doc(params={
         'aadhaar_no': {'in': 'formData', 'description': 'User Aadhaar Number', 'required': 'True'}})
-    def get(self):
+    def post(self):
         aadhaar_no=request.form['aadhaar_no']
         person = Person.get_by_aadhaar(aadhaar_no)
         return jsonify(
