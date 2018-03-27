@@ -13,7 +13,7 @@ class Person:
         self.name = PersonUtility.formating_name(name)
         self.address = address
         self.gender = gender
-        self.dob = datetime.datetime.strptime(dob,"%Y-%m-%d") if dob is isinstance(dob, str) else dob
+        self.dob = datetime.datetime.strptime(dob,"%Y-%m-%d") if isinstance(dob, str) else dob
         self.phone = PersonUtility.formating_phone(phone)
         self.fingerprint = fingerprint
         self.image = image
