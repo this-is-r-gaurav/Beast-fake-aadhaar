@@ -38,7 +38,7 @@ def register_user():
         if image and Utils.allowed_file(image.filename):
             filename = secure_filename(image.filename)
             fileName = filename
-            image.save(os.path.join('static/assets/images/',filename))
+            image.save(os.path.join((os.path.abspath('.'))+'static/assets/images/',filename))
 
         Person(
             aadhaar_no=aadhaar_no,
