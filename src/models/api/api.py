@@ -1,4 +1,4 @@
-from flask import url_for,jsonify
+from flask import url_for,jsonify,request
 from flask.blueprints import Blueprint
 from flask_restplus import Resource, Api
 from src.models.api.methods import APIMethods
@@ -31,3 +31,4 @@ class GetUserInfo(Resource):
             "phone": person.phone,
             "image": url_for('static',filename="assets/images/"+person.image )
              })
+
