@@ -16,7 +16,7 @@ class ListAllUser(Resource):
 
 @api.route('/adhaar')
 class GetUserInfo(Resource):
-    @TSP_namespace.doc(params={
+    @api.doc(params={
         'aadhaar_no': {'in': 'formData', 'description': 'User Aadhaar Number', 'required': 'True'}})
     def get(self):
         aadhaar_no=request.form['aadhaar_no']
