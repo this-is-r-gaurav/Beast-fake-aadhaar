@@ -40,14 +40,7 @@ def register_user():
             fileName = filename
             image.save(os.path.join((url_for('static')+'/assets/images/',filename))
 
-        Person(
-            aadhaar_no=aadhaar_no,
-            image = fileName,
-            gender= gender,
-            name = name,
-            address = address,
-            dob = dob,
-            fingerprint=fingerprint,
-            phone = phone).save_to_db()
+ 	Person(aadhaar_no=aadhaar_no,image=fileName,gender=gender,name=name,address=address,dob=dob,fingerprint=fingerprint,phone=phone).save_to_db()
+
 
     return render_template('users/get-records.html')
