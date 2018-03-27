@@ -1,4 +1,4 @@
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, flash, redirect,url_for
 from flask.blueprints import Blueprint
 from werkzeug.utils import secure_filename
 
@@ -7,9 +7,10 @@ from src.models.person.person import Person
 
 import os
 
-person_blueprint = Blueprint('person',__name__)
+person_blueprint = Blueprint('person', __name__)
 
-@person_blueprint.route('/register', methods = ["POST", "GET"])
+
+@person_blueprint.route('/register', methods=["POST", "GET"])
 def register_user():
     if request.method == "POST":
         aadhaar_no = request.form['aadhaar_no']
@@ -20,9 +21,6 @@ def register_user():
         phone = request.form['phone']
         fingerprint = request.form['fingerprint']
         fileName = None
-        if not Utils.is_adhaar_valid(aadhaar_no):
-            flash('Incorrect format of Aadhaar Number')
-            return request.url
         if not Utils.is_adhaar_valid(aadhaar_no):
             flash('Incorrect format of Mobile Number')
             return request.url
@@ -38,10 +36,8 @@ def register_user():
         if image and Utils.allowed_file(image.filename):
             filename = secure_filename(image.filename)
             fileName = filename
-            image.save(os.path.join((url_for('static')+'/assets/images/',filename))
+            image.save(os.path.join(url_for('static') + '/assets/images/', filename))
 
- 	person = Person(aadhaar_no=aadhaar_no,image=fileName,gender=gender,name=name,address=address,dob=dob,fingerprint=fingerprint,phone=phone)
-	person.save_to_db()
-
-
+        person = Person( aadhaar_no= aadhaar_no, image=fileName, gender=gender, name=name, address=address, dob=dob, fingerprint=fingerprint, phone=phone)
+        person.save_to_db()
     return render_template('users/get-records.html')
