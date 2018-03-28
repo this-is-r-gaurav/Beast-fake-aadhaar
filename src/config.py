@@ -1,5 +1,1 @@
-DEBUG = True
-
-ADMINS = frozenset([
-    "yourname@yourdomain.com"
-])
+domain = "https://beast-fake-aadhaar.herokuapp.com/"

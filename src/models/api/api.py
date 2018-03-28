@@ -1,9 +1,8 @@
-import os
-
-from flask import url_for,jsonify,request
+from flask import jsonify,request
 from flask.blueprints import Blueprint
 from flask_restplus import Resource, Api
 
+from src.config import domain
 from src.models.api.methods import APIMethods
 from src.models.person.person import Person
 
@@ -21,7 +20,7 @@ class ListAllUser(Resource):
 class GetUserInfo(Resource):
     @api.doc(params={
         'aadhaar_no': {'in': 'formData', 'description': 'User Aadhaar Number', 'required': 'True'}})
-    def post(self):
+    def get(self):
         aadhaar_no=request.form['aadhaar_no']
         person = Person.get_by_aadhaar(aadhaar_no)
         return jsonify(
@@ -32,6 +31,6 @@ class GetUserInfo(Resource):
             "address": person.address,
             "dob": person.dob,
             "phone": person.phone,
-            "image": os.path.abspath("./src/static/assets/images/"+person.image )
+            "image": domain+"static/assets/images/"+person.image
              })
 
