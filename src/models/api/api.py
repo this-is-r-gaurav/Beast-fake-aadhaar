@@ -23,14 +23,18 @@ class GetUserInfo(Resource):
     def post(self):
         aadhaar_no=request.form['aadhaar_no']
         person = Person.get_by_aadhaar(aadhaar_no)
-        return jsonify(
-            {
-            "aadhaar": person.aadhaar_no,
-            "name": person.name,
-            "gender": person.gender,
-            "address": person.address,
-            "dob": person.dob.strftime("%Y-%m-%d"),
-            "phone": person.phone,
-            "image": domain+"static/assets/images/"+person.image
-             })
+	if person:
+            return jsonify(
+                {
+                "aadhaar": person.aadhaar_no,
+                "name": person.name,
+                "gender": person.gender,
+                "address": person.address,
+                "dob": person.dob.strftime("%Y-%m-%d"),
+                "phone": person.phone,
+                "image": domain+"static/assets/images/"+person.image
+                 })
+	else:
+            return None
+
 
