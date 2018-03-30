@@ -38,3 +38,34 @@ class GetUserInfo(Resource):
                 })
         else:
             return None
+
+
+@api.route('/register')
+class AddUser(Resource):
+
+    @api.doc(params={
+        'aadhaar_no': {'in': 'formData', 'description': 'User Aadhaar Number', 'required': 'True'},
+        'name': {'in': 'formData', 'description': 'User Name', 'required': 'True'},
+        'dob': {'in': 'formData', 'description': 'User Date of Birth', 'required': 'True'},
+        'address': {'in': 'formData', 'description': 'User Address', 'required': 'True'},
+        'mobile_no': {'in': 'formData', 'description': 'User Mobile Number', 'required': 'True'},
+        'gender': {'in': 'formData', 'description': 'User Gender', 'required': 'True'},
+    })
+    def post(self):
+        aadhaar_no = request.form['aadhaar_no']
+        name = request.form['name']
+        dob = request.form['dob']
+        image ="x.jpeg"
+        address = request.form['address']
+        mobile_no = request.form['mobile_no']
+        gender = request.form['gender']
+
+        if Person.get_by_aadhaar(aadhaar_no):
+
+            return {"msg": "User already exist"}
+        else:
+            if Person(aadhaar_no,image,name,address,gender,dob,mobile_no,"True").save_to_db():
+                return {"msg":"user created successfuly"}, 201
+            else:
+                return {"msg":"user cant be created"}, 302
+
