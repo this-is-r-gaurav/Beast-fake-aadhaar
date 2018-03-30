@@ -28,8 +28,8 @@ class GetUserInfo(Resource):
             "aadhaar": person.aadhaar_no,
             "name": person.name,
             "gender": person.gender,
-            "address": person.address.strftime("%Y-%m-%d"),
-            "dob": person.dob,
+            "address": person.address,
+            "dob": person.dob.strftime("%Y-%m-%d"),
             "phone": person.phone,
             "image": domain+"static/assets/images/"+person.image
              })
