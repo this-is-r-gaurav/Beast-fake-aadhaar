@@ -28,7 +28,7 @@ class GetUserInfo(Resource):
             "aadhaar": person.aadhaar_no,
             "name": person.name,
             "gender": person.gender,
-            "address": person.address,
+            "address": person.address.strftime("%Y-%m-%d"),
             "dob": person.dob,
             "phone": person.phone,
             "image": domain+"static/assets/images/"+person.image
