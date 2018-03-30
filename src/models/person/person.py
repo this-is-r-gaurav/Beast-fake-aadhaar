@@ -33,7 +33,7 @@ class Person:
         }
 
     def save_to_db(self):
-        Database.update(PersonConstants.COLLECTION, {"_id": self._id}, self.json())
+        return Database.update(PersonConstants.COLLECTION, {"_id": self._id}, self.json())
 
     @classmethod
     def get_by_id(cls, person_id):
@@ -49,3 +49,4 @@ class Person:
     def get_by_aadhaar(cls, aadhaar_no):
         data = Database.find_one(PersonConstants.COLLECTION, {'aadhaar_no': aadhaar_no})
         return cls(**data) if data is not None else None
+
