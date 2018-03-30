@@ -16,7 +16,7 @@ class ListAllUser(Resource):
         cluster_data = APIMethods.get_cluster_user()
         return jsonify({'data': cluster_data })
 
-@api.route('/adhaar')
+@api.route('/aadhaar')
 class GetUserInfo(Resource):
     @api.doc(params={
         'aadhaar_no': {'in': 'formData', 'description': 'User Aadhaar Number', 'required': 'True'}})
